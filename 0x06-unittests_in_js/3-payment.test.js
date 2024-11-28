@@ -1,22 +1,18 @@
-import { expect } from 'chai';
-import sinon from 'sinon';
-import { sendPaymentRequestToApi } from './3-payment.js';
-import Utils from './utils.js';
+const { expect } = require('chai');
+const sinon = require('sinon');
+const sendPaymentRequestToApi = require('./3-payment.js');
+const Utils = require('./utils.js');
 
 describe('sendPaymentRequestToApi', () => {
-  let spy;
-
   beforeEach(() => {
-    // Spy on the calculateNumber function
-    spy = sinon.spy(Utils, 'calculateNumber');
-  });
-
-  afterEach(() => {
-    // Ensure that spy is restored after each test to avoid side effects
+    // Restore any previously spied/stubbed methods
     sinon.restore();
   });
 
   it('should call calculateNumber with correct arguments when sendPaymentRequestToApi is called', () => {
+    // Spy on the calculateNumber method in Utils
+    const spy = sinon.spy(Utils, 'calculateNumber');
+
     const totalAmount = 100;
     const totalShipping = 20;
 
@@ -28,11 +24,11 @@ describe('sendPaymentRequestToApi', () => {
   });
 
   it('should log the correct total when sendPaymentRequestToApi is called', () => {
+    // Spy on the console.log
+    const consoleSpy = sinon.spy(console, 'log');
+
     const totalAmount = 100;
     const totalShipping = 20;
-
-    // Mock console.log
-    const consoleSpy = sinon.spy(console, 'log');
 
     // Call sendPaymentRequestToApi
     sendPaymentRequestToApi(totalAmount, totalShipping);
