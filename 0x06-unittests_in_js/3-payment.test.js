@@ -19,12 +19,12 @@ describe('sendPaymentRequestToApi', () => {
     // Call sendPaymentRequestToApi
     sendPaymentRequestToApi(totalAmount, totalShipping);
 
-    // Check if calculateNumber was called with the correct arguments
+    // Assert that calculateNumber was called once with the correct arguments
     expect(spy.calledOnceWithExactly('SUM', totalAmount, totalShipping)).to.be.true;
   });
 
   it('should log the correct total when sendPaymentRequestToApi is called', () => {
-    // Spy on the console.log
+    // Spy on console.log
     const consoleSpy = sinon.spy(console, 'log');
 
     const totalAmount = 100;
@@ -33,10 +33,10 @@ describe('sendPaymentRequestToApi', () => {
     // Call sendPaymentRequestToApi
     sendPaymentRequestToApi(totalAmount, totalShipping);
 
-    // Check if console.log was called with the correct message
+    // Assert that console.log was called with the correct message
     expect(consoleSpy.calledWith('The total is: 120')).to.be.true;
 
-    // Restore console.log
+    // Restore console.log spy
     consoleSpy.restore();
   });
 });
