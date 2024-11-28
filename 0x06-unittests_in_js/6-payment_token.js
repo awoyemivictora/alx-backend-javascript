@@ -1,4 +1,4 @@
-export function getPaymentTokenFromAPI(success) {
+function getPaymentTokenFromAPI(success) {
     return new Promise((resolve, reject) => {
         if (success) {
             resolve({ data: 'Successful response from the API' });
@@ -7,3 +7,5 @@ export function getPaymentTokenFromAPI(success) {
         }
     });
 }
+
+module.exports = getPaymentTokenFromAPI;
